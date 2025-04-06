@@ -1,7 +1,8 @@
+import React from "react";
 import { RadioGroupProps } from "@/types";
 import RadioOption from "./RadioOption";
 
-export default function RadioGroup({
+function RadioGroup({
   label,
   options,
   value,
@@ -31,3 +32,5 @@ export default function RadioGroup({
     </div>
   );
 }
+
+export default React.memo(RadioGroup);

@@ -1,25 +1,17 @@
 "use client";
 import RadioGroup from "@/components/RadioGroup/RadioGroup";
-import { getNextNode } from "@/utils/formUtils";
 import useDynamicForm from "@/hooks/useDynamicForm";
 import { FormRendererProps } from "@/types";
 
 export default function FormRenderer({ node }: FormRendererProps) {
-  const { rootSelection, selected, handleRootChange, handleChange } =
-    useDynamicForm();
-
-  const { options: rootOptions, children: rootChildren = [] } = node;
-
-  const rootNode =
-    rootSelection &&
-    rootChildren.find(
-      (child) => child.ID.toLowerCase() === rootSelection.toLowerCase()
-    );
-
-  const nextLevels =
-    rootSelection && rootNode
-      ? [rootNode, ...getNextNode(rootNode, selected)]
-      : [];
+  const {
+    rootSelection,
+    rootOptions,
+    nextLevels,
+    selected,
+    handleRootChange,
+    handleNestedChange,
+  } = useDynamicForm(node);
 
   return (
     <div className="mb-6">
@@ -39,7 +31,7 @@ export default function FormRenderer({ node }: FormRendererProps) {
             label={n.label_val}
             options={n.options}
             value={selected[idx] || ""}
-            onChange={(val) => handleChange(idx, val)}
+            onChange={handleNestedChange(idx)}
             displayVertical={n.displayVertical}
           />
         </div>

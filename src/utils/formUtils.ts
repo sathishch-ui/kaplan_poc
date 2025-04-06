@@ -8,11 +8,12 @@ export const findMatchingChild = (
   selectedValue: string
 ): FormNode | undefined => {
   const normVal = normalize(selectedValue);
-  return children.find(
-    (child) =>
-      child.ID?.toLowerCase().includes(normVal) ||
-      child.label_val?.toLowerCase().includes(selectedValue?.toLowerCase())
-  );
+
+  return children.find((child) => {
+    const idMatch = normalize(child?.ID).includes(normVal);
+    const labelMatch = normalize(child?.label_val).includes(normVal);
+    return idMatch || labelMatch;
+  });
 };
 
 export const getNextNode = (

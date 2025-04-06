@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Dynamic Radio Form",
+  title: "Dynamic Examination Form",
   description: "Recursive Radio Form with Depth Handling",
 };
 

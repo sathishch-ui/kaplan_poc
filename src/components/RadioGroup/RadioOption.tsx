@@ -1,11 +1,7 @@
+import React from "react";
 import { RadioOptionProps } from "@/types";
 
-export default function RadioOption({
-  name,
-  value,
-  checked,
-  onChange,
-}: RadioOptionProps) {
+function RadioOption({ name, value, checked, onChange }: RadioOptionProps) {
   return (
     <label className="flex items-center gap-2 cursor-pointer">
       <input
@@ -20,3 +16,5 @@ export default function RadioOption({
     </label>
   );
 }
+
+export default React.memo(RadioOption);
